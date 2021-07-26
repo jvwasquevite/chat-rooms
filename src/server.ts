@@ -4,6 +4,8 @@ import path from 'path'
 import { createServer } from 'http'
 import { Socket, Server } from 'socket.io'
 
+import './database'
+
 const app = express()
 app.use(express.json())
 
