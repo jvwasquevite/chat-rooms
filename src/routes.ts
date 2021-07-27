@@ -11,6 +11,6 @@ router.post('/users', createUserController.handle)
 router.post('/login', authenticateUserController.handle)
 
 router.post('/rooms', ensureAuthenticated, createRoomController.handle)
-router.get('/rooms', listRoomsController.handle)
+router.get('/rooms', ensureAuthenticated, listRoomsController.handle)
 
 export { router }
