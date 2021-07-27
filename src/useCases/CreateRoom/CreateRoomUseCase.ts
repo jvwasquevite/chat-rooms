@@ -7,7 +7,7 @@ interface IRoomRequest {
   description: string
 }
 
-class CreatePublicRoomUseCase {
+class CreateRoomUseCase {
   async execute({ admin_id, name, description }: IRoomRequest) {
     const roomRepository = getCustomRepository(RoomRepository)
 
@@ -15,9 +15,9 @@ class CreatePublicRoomUseCase {
       throw new Error('Name field is required')
     }
 
-    const userAlreadyHasPublicRoom = await roomRepository.findOne({ admin_id })
+    const userAlreadyHasRoom = await roomRepository.findOne({ admin_id })
 
-    if (userAlreadyHasPublicRoom) {
+    if (userAlreadyHasRoom) {
       throw new Error('User already has one public room')
     }
 
@@ -29,4 +29,4 @@ class CreatePublicRoomUseCase {
   }
 }
 
-export { CreatePublicRoomUseCase }
+export { CreateRoomUseCase }

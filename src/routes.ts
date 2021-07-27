@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { createUserController } from './useCases/CreateUser'
 import { authenticateUserController } from './useCases/AuthenticateUser'
-import { createPublicRoomController } from './useCases/CreatePublicRoom'
+import { createRoomController } from './useCases/CreateRoom'
 import { ensureAuthenticated } from './middlewares/ensureAuthenticated'
 
 const router = Router()
@@ -9,6 +9,6 @@ const router = Router()
 router.post('/users', createUserController.handle)
 router.post('/login', authenticateUserController.handle)
 
-router.post('/rooms', ensureAuthenticated, createPublicRoomController.handle)
+router.post('/rooms', ensureAuthenticated, createRoomController.handle)
 
 export { router }
