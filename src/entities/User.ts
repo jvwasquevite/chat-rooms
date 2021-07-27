@@ -24,9 +24,11 @@ class User {
   @Column()
   password: string
 
+  @Exclude()
   @CreateDateColumn()
   created_at: Date
 
+  @Exclude()
   @UpdateDateColumn()
   updated_at: Date
 
