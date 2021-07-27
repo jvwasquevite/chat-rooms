@@ -1,0 +1,18 @@
+import { getCustomRepository } from 'typeorm'
+import { RoomRepository } from '../../repositories/RoomRepository'
+import { classToPlain } from 'class-transformer'
+
+class ListRoomsUseCase {
+  async execute() {
+    const roomRepository = getCustomRepository(RoomRepository)
+
+    const rooms = await roomRepository.find({
+      select: ['id', 'name', 'description'],
+      relations: ['adminId'],
+    })
+
+    return classToPlain(rooms)
+  }
+}
+
+export { ListRoomsUseCase }
