@@ -15,7 +15,7 @@ class AuthenticateUserUseCase {
     const user = await userRepository.findOne({ email })
 
     if (!user) {
-      throw new Error('User not found')
+      throw new Error('Email/Password incorrect')
     }
 
     const passwordMatch = await compare(password, user.password)
