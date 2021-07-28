@@ -23,7 +23,7 @@ class Room {
 
   @JoinColumn({ name: 'admin_id' })
   @OneToOne(() => User)
-  adminId: User
+  admin: User
 
   @Column()
   name: string
