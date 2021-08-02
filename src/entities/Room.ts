@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
@@ -11,6 +12,7 @@ import { v4 as uuid } from 'uuid'
 import { User } from './User'
 
 import { Exclude } from 'class-transformer'
+import { Conversation } from './Conversation'
 
 @Entity('room')
 class Room {
@@ -30,6 +32,9 @@ class Room {
 
   @Column()
   description: string
+
+  @OneToMany(() => Conversation, conversation => conversation.rooms)
+  conversations: Conversation[]
 
   @Exclude()
   @CreateDateColumn()

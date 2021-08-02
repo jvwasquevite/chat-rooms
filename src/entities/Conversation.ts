@@ -1,11 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToMany,
-  OneToOne,
-  PrimaryColumn,
-} from 'typeorm'
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm'
 import { v4 as uuid } from 'uuid'
 import { Room } from './Room'
 import { User } from './User'
@@ -18,16 +11,14 @@ class Conversation {
   @Column()
   user_id: string
 
-  @JoinColumn({ name: 'user_id' })
-  @OneToMany(() => User, User => Conversation)
-  userId: User
+  @ManyToOne(() => User, user => user.conversations)
+  users: User[]
 
   @Column()
   room_id: string
 
-  @JoinColumn({ name: 'room_id' })
-  @OneToOne(() => Room)
-  roomId: Room
+  @ManyToOne(() => Room, room => room.conversations)
+  rooms: Room[]
 
   constructor() {
     if (!this.id) {

@@ -2,12 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm'
 import { v4 as uuid } from 'uuid'
 
 import { Exclude } from 'class-transformer'
+import { Conversation } from './Conversation'
 
 @Entity('user')
 class User {
@@ -23,6 +25,9 @@ class User {
   @Exclude()
   @Column()
   password: string
+
+  @OneToMany(() => Conversation, conversation => conversation.users)
+  conversations: Conversation[]
 
   @Exclude()
   @CreateDateColumn()
