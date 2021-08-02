@@ -18,6 +18,17 @@ class JoinRoomUseCase {
       throw new Error('Room does not exist!')
     }
 
+    const userAlreadyJoined = await conversationRepository.findOne({
+      where: {
+        user_id,
+        room_id,
+      },
+    })
+
+    if (userAlreadyJoined) {
+      throw new Error('User already joined this room')
+    }
+
     const conversation = conversationRepository.create({
       user_id,
       room_id,
