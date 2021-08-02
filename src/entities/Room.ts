@@ -34,7 +34,7 @@ class Room {
   description: string
 
   @OneToMany(() => Conversation, conversation => conversation.rooms)
-  conversations: Conversation[]
+  users: Conversation[]
 
   @Exclude()
   @CreateDateColumn()

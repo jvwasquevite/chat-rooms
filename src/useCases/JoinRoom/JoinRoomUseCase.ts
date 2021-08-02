@@ -18,7 +18,10 @@ class JoinRoomUseCase {
       throw new Error('Room does not exist!')
     }
 
-    const conversation = conversationRepository.create({ user_id, room_id })
+    const conversation = conversationRepository.create({
+      user_id,
+      room_id,
+    })
 
     await conversationRepository.save(conversation)
   }
