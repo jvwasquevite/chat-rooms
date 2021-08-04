@@ -7,17 +7,21 @@ import { listRoomsController } from './useCases/ListRooms'
 import { updateRoomController } from './useCases/UpdateRoom'
 import { deleteRoomController } from './useCases/DeleteRoom'
 import { joinRoomController } from './useCases/JoinRoom'
+import { listRoomUsersController } from './useCases/ListRoomUsers'
+import { listUsersController } from './useCases/ListUsers'
 
 const router = Router()
 
 router.post('/users', createUserController.handle)
+router.get('/users', listUsersController.handle)
 
-router.post('/rooms', ensureAuthenticated, createRoomController.handle)
-router.get('/rooms', ensureAuthenticated, listRoomsController.handle)
-router.put('/rooms/:id', ensureAuthenticated, updateRoomController.handle)
-router.delete('/rooms/:id', ensureAuthenticated, deleteRoomController.handle)
+router.post('/rooms', createRoomController.handle)
+router.get('/rooms', listRoomsController.handle)
+router.put('/rooms/:id', updateRoomController.handle)
+router.delete('/rooms/:id', deleteRoomController.handle)
 
-router.post('/rooms/join', ensureAuthenticated, joinRoomController.handle)
+router.post('/rooms/join', joinRoomController.handle)
+router.get('/rooms/users/:id', listRoomUsersController.handle)
 
 router.post('/login', authenticateUserController.handle)
 
