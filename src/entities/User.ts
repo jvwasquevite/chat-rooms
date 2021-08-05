@@ -11,7 +11,7 @@ import { v4 as uuid } from 'uuid'
 import { Exclude } from 'class-transformer'
 import { Conversation } from './Conversation'
 
-@Entity('user')
+@Entity('client')
 class User {
   @PrimaryColumn()
   readonly id: string
@@ -27,7 +27,7 @@ class User {
   password: string
 
   @OneToMany(() => Conversation, conversation => conversation.users)
-  conversations: Conversation[]
+  rooms: Conversation[]
 
   @Exclude()
   @CreateDateColumn()
