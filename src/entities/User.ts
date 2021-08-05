@@ -27,7 +27,7 @@ class User {
   password: string
 
   @OneToMany(() => Conversation, conversation => conversation.users)
-  rooms: Conversation[]
+  users: Conversation[]
 
   @Exclude()
   @CreateDateColumn()

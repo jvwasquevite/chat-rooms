@@ -12,14 +12,14 @@ class Conversation {
   user_id: string
 
   @JoinColumn({ name: 'user_id' })
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, user => user.users)
   users: User
 
   @Column()
   room_id: string
 
   @JoinColumn({ name: 'room_id' })
-  @ManyToOne(() => Room)
+  @ManyToOne(() => Room, room => room.rooms)
   rooms: Room
 
   constructor() {
