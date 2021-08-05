@@ -7,7 +7,7 @@ class ListRoomsUseCase {
     const roomRepository = getCustomRepository(RoomRepository)
 
     const rooms = await roomRepository.find({
-      relations: ['admin', 'users'],
+      relations: ['admin'],
     })
 
     return classToPlain(rooms)
